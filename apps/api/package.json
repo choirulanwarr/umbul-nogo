@@ -1,0 +1,18 @@
+{
+  "name": "@umbul-nogo/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/server.ts",
+    "build": "bun build --target=bun --packages=external --outdir=dist src/server.ts",
+    "start": "bun dist/server.js",
+    "check": "bun run --bun tsc -p tsconfig.json",
+    "verify:sharp": "bun scripts/verify-sharp.ts"
+  },
+  "dependencies": {
+    "@umbul-nogo/contracts": "workspace:*",
+    "elysia": "1.4.30",
+    "sharp": "0.35.4"
+  }
+}

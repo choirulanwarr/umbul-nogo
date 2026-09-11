@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #16624f;
+  --color-brand-hover: #104d3f;
+  --color-canvas: #f7f4eb;
+  --color-surface: #ffffff;
+  --color-water: #16718a;
+  --color-text: #19352d;
+  --color-text-muted: #50655d;
+  --color-divider: #dce6df;
+  --font-sans: "Avenir Next", "Segoe UI", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply m-0 bg-canvas font-sans text-text antialiased;
+  }
+
+  button,
+  a {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-water;
+  }
+}

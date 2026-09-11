@@ -1,0 +1,15 @@
+{
+  "name": "@umbul-nogo/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./bootstrap": "./src/bootstrap.ts"
+  },
+  "scripts": {
+    "check": "bun run --bun tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "zod": "4.5.4"
+  }
+}

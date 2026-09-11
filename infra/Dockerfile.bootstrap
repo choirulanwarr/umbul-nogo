@@ -1,0 +1,12 @@
+FROM oven/bun:1.4.0-debian
+WORKDIR /app
+COPY . .
+RUN bun install --frozen-lockfile
+RUN bun run format:check
+RUN bun run check:source
+RUN bun run lint
+RUN bun run check
+RUN bun run test:unit
+RUN bun run build
+RUN bun run test:integration
+CMD ["bun", "run", "start:api"]
