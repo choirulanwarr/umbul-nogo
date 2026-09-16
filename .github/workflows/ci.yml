@@ -1,0 +1,32 @@
+name: Checks
+
+on:
+  # Run only after the project owner agrees to testing.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: "1.4.0"
+      - run: bun install --frozen-lockfile
+      - run: bun run format:check
+      - run: bun run check:source
+      - run: bun run lint
+      - run: bun run check
+      - run: bun run test:unit
+      - run: bun run build
+      - run: bun run test:integration
+      - run: bun run --bun playwright install --with-deps chromium
+      - run: bun run test:e2e

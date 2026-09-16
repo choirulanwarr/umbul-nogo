@@ -1,0 +1,54 @@
+{
+  "name": "umbul-nogo",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.0",
+  "engines": {
+    "bun": "1.4.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun run scripts/dev.ts",
+    "dev:web": "bun run --cwd apps/web --bun dev",
+    "dev:api": "bun run --cwd apps/api dev",
+    "format": "bun run --bun prettier --write .",
+    "format:check": "bun run --bun prettier --check .",
+    "lint": "bun run --cwd apps/web --bun sync && bun run --bun eslint . --max-warnings=0",
+    "check:source": "bun run scripts/check-source.ts",
+    "build": "bun run build:api && bun run build:web",
+    "build:api": "bun run --cwd apps/api build",
+    "build:web": "bun run --cwd apps/web --bun build",
+    "start:web": "bun run --cwd apps/web start",
+    "start:api": "bun run --cwd apps/api start",
+    "check": "bun run --cwd packages/contracts check && bun run --cwd apps/api check && bun run --cwd apps/web --bun check && bun run --bun tsc -p tsconfig.tools.json",
+    "test:unit": "bun test ./tests/unit",
+    "test:integration": "bun run verify:sharp && bun run verify:runtime",
+    "test:e2e": "bun run --bun playwright test",
+    "test:smoke": "bun run test:e2e",
+    "verify:runtime": "bun run scripts/verify-runtime.ts",
+    "verify:sharp": "bun run --cwd apps/api verify:sharp",
+    "test:db": "bun run --cwd apps/api test:db",
+    "db:generate": "bun run --cwd apps/api db:generate",
+    "db:migrate": "bun run --cwd apps/api db:migrate",
+    "db:fixture": "bun run --cwd apps/api db:fixture"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@playwright/test": "1.63.0",
+    "@types/bun": "1.4.0",
+    "@typescript-eslint/utils": "8.70.0",
+    "@umbul-nogo/contracts": "workspace:*",
+    "eslint": "9.39.5",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-svelte": "3.23.0",
+    "prettier": "3.9.6",
+    "prettier-plugin-svelte": "4.1.1",
+    "prettier-plugin-tailwindcss": "0.8.1",
+    "svelte": "5.57.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.70.0"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@umbul-nogo/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --bun vite dev --host 127.0.0.1 --port 5173 --strictPort",
+    "build": "bun run --bun vite build",
+    "sync": "bun run --bun svelte-kit sync",
+    "start": "bun build/index.js",
+    "check": "bun run sync && bun run --bun svelte-check --tsconfig ./tsconfig.json && bun run --bun tsc -p tsconfig.tools.json"
+  },
+  "dependencies": {
+    "@umbul-nogo/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "2.70.3",
+    "@sveltejs/vite-plugin-svelte": "7.3.0",
+    "@tailwindcss/vite": "4.3.3",
+    "svelte": "5.57.0",
+    "svelte-adapter-bun": "1.0.1",
+    "svelte-check": "4.7.6",
+    "tailwindcss": "4.3.3",
+    "vite": "8.2.2"
+  }
+}

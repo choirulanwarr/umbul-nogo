@@ -1,0 +1,13 @@
+**/node_modules/
+**/.svelte-kit/
+**/build/
+**/dist/
+coverage/
+playwright-report/
+test-results/
+.env
+.env.*
+bun.lock
+# Keep planning documents stable; this command formats source and configuration.
+docs/
+README.md
