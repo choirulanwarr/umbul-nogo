@@ -1,7 +1,7 @@
 # Tugas Implementasi — UMBUL NOGO
 
 > Status: draf tahap 7 — daftar pekerjaan berdasarkan empat dokumen sebelumnya.
-> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03 sudah diimplementasikan dan menunggu bukti unit test.
+> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03 dan T-04 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
 > Acuan: [requirement.md](./requirement.md), [design.md](./design.md), [api-standar.md](./api-standar.md), dan [code-conventions.md](./code-conventions.md).
 > Pembaruan 11 September 2026: lihat [bukti T-01](./evidence/t01-bootstrap.md) dan [bukti T-02](./evidence/t02-code-checks.md). Pengiriman pekerjaan memakai branch `development`; tes dan pemicu CI manual menunggu konfirmasi pemilik proyek sesuai [AGENTS.md](../AGENTS.md). Cakupan pengaturan pada [settings.md](./settings.md) tetap masuk tugas terkait.
 
@@ -69,6 +69,7 @@ Urutan bagian mengelompokkan pekerjaan, bukan mewajibkan semuanya berjalan seria
 - **Selesai bila:** migrasi berhasil pada database kosong; constraint, foreign key, indeks awal, singleton, serta tipe uang/waktu sesuai desain. Fixture tidak berisi kredensial produksi dan tidak dijalankan sebagai seed konten nyata. Database test terisolasi sebelum cleanup.
 - **Bukti:** hasil migrasi dan transaksi commit/rollback pada PostgreSQL nyata; role runtime tidak memiliki hak DDL. Pemakaian snapshot konsisten diuji lebih lanjut pada T-14.
 - **Pengisian awal:** bootstrap produksi hanya mengisi nama/wilayah terkonfirmasi, singleton state, singleton `operations_settings` dengan seluruh isian null, dan tujuh jadwal unknown; field opsional null serta koleksi kosong. Buktikan isi awal sesuai kontrak dan bootstrap/restart tidak menimpa data yang sudah diedit. Pembukaan admin tanpa fixture bisnis tambahan dibuktikan pada T-23 setelah autentikasi/UI tersedia.
+- **Hasil aktual:** schema 15 tabel, migrasi SQL, pool, role, Compose development/test, fixture dan suite integrasi tersedia; lihat [panduan database](./database.md) dan [bukti T-04](./evidence/t04-database.md). Database/migrasi/tes belum dijalankan; dependensi T-03 juga belum memiliki bukti unit.
 
 ### T-05 — Fondasi HTTP, konfigurasi, dan diagnosis
 

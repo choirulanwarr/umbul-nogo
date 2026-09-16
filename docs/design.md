@@ -509,7 +509,7 @@ Jika API/database tidak tersedia, pembacaan publik mengembalikan halaman ganggua
 
 ### 12.1 Entitas
 
-Nama kolom berikut adalah rancangan awal schema; DDL dan schema TypeScript dibuat saat implementasi. Entitas biasa menggunakan UUID, sementara profil, penanda konten, dan pengaturan Operasional adalah singleton dengan `id = 1`. Timestamp kejadian menggunakan `timestamptz` dan ditampilkan sebagai WIB.
+Nama kolom berikut menjadi dasar schema T-04; implementasi Drizzle, DDL terversi, role, pool, dan fixture tersedia sesuai [panduan database](./database.md). Penerapan migrasi pada PostgreSQL nyata belum diuji. Entitas biasa menggunakan UUID, sementara profil, penanda konten, dan pengaturan Operasional adalah singleton dengan `id = 1`. Timestamp kejadian menggunakan `timestamptz` dan ditampilkan sebagai WIB.
 
 | Entitas | Field utama | Relasi dan aturan |
 | --- | --- | --- |

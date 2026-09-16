@@ -29,7 +29,11 @@
     "test:e2e": "bun run --bun playwright test",
     "test:smoke": "bun run test:e2e",
     "verify:runtime": "bun run scripts/verify-runtime.ts",
-    "verify:sharp": "bun run --cwd apps/api verify:sharp"
+    "verify:sharp": "bun run --cwd apps/api verify:sharp",
+    "test:db": "bun run --cwd apps/api test:db",
+    "db:generate": "bun run --cwd apps/api db:generate",
+    "db:migrate": "bun run --cwd apps/api db:migrate",
+    "db:fixture": "bun run --cwd apps/api db:fixture"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",

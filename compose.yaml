@@ -1,0 +1,29 @@
+name: umbul-nogo
+services:
+  postgres-development:
+    image: postgres:18
+    profiles: [development]
+    environment:
+      POSTGRES_DB: umbul_nogo_development
+      POSTGRES_PASSWORD: ${DEV_POSTGRES_PASSWORD:?Set DEV_POSTGRES_PASSWORD}
+      UMBUL_MIGRATION_PASSWORD: ${DEV_MIGRATION_PASSWORD:?Set DEV_MIGRATION_PASSWORD}
+      UMBUL_RUNTIME_PASSWORD: ${DEV_RUNTIME_PASSWORD:?Set DEV_RUNTIME_PASSWORD}
+    ports: ["127.0.0.1:5433:5432"]
+    volumes:
+      - postgres-development:/var/lib/postgresql
+      - ./infrastructure/postgres/init.sql:/docker-entrypoint-initdb.d/01-roles.sql:ro
+  postgres-test:
+    image: postgres:18
+    profiles: [test]
+    environment:
+      POSTGRES_DB: umbul_nogo_test
+      POSTGRES_PASSWORD: ${TEST_POSTGRES_PASSWORD:?Set TEST_POSTGRES_PASSWORD}
+      UMBUL_MIGRATION_PASSWORD: ${TEST_MIGRATION_PASSWORD:?Set TEST_MIGRATION_PASSWORD}
+      UMBUL_RUNTIME_PASSWORD: ${TEST_RUNTIME_PASSWORD:?Set TEST_RUNTIME_PASSWORD}
+    ports: ["127.0.0.1:5434:5432"]
+    volumes:
+      - postgres-test:/var/lib/postgresql
+      - ./infrastructure/postgres/init.sql:/docker-entrypoint-initdb.d/01-roles.sql:ro
+volumes:
+  postgres-development:
+  postgres-test:
