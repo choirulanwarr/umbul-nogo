@@ -4,7 +4,24 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./bootstrap": "./src/bootstrap.ts"
+    "./bootstrap": "./src/bootstrap.ts",
+    "./attractions": "./src/attractions.ts",
+    "./auth": "./src/auth.ts",
+    "./contacts": "./src/contacts.ts",
+    "./destination": "./src/destination.ts",
+    "./envelopes": "./src/envelopes.ts",
+    "./errors": "./src/errors.ts",
+    "./facilities": "./src/facilities.ts",
+    "./gallery-items": "./src/gallery-items.ts",
+    "./images": "./src/images.ts",
+    "./media": "./src/media.ts",
+    "./mutation-receipts": "./src/mutation-receipts.ts",
+    "./opening-hours": "./src/opening-hours.ts",
+    "./operations": "./src/operations.ts",
+    "./primitives": "./src/primitives.ts",
+    "./public-site": "./src/public-site.ts",
+    "./seo": "./src/seo.ts",
+    "./ticket-rates": "./src/ticket-rates.ts"
   },
   "scripts": {
     "check": "bun run --bun tsc -p tsconfig.json"

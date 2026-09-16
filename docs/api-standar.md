@@ -4,6 +4,7 @@
 > Asumsi: satu destinasi, satu peran admin, informasi tiket tanpa transaksi, dan frontend serta API pada satu origin. Batas panjang field dan parameter operasional di bawah adalah usulan teknis.
 > Endpoint MVP `/api/v1` belum diimplementasikan. T-01 hanya menyediakan `GET /internal/bootstrap` sementara untuk membuktikan web/API/shared contracts; endpoint ini akan digantikan alur data sebenarnya. Contoh harga, UUID, versi, dan waktu merupakan fixture pengembangan; bukan data operasional UMBUL NOGO.
 > Pembaruan 10 September 2026: kontrak Operasional privat dan pengisian awal pada bagian 5.3–5.4; alur pengguna pada [settings.md](./settings.md).
+> Implementasi schema T-03 tersedia di `packages/contracts/src` melalui exports per domain; lihat [bukti dan batas verifikasi](./evidence/t03-shared-contracts.md). Schema ini belum merupakan implementasi endpoint HTTP.
 
 ## 1. Cakupan dan kepemilikan
 

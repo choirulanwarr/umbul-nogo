@@ -36,6 +36,7 @@
     "@playwright/test": "1.63.0",
     "@types/bun": "1.4.0",
     "@typescript-eslint/utils": "8.70.0",
+    "@umbul-nogo/contracts": "workspace:*",
     "eslint": "9.39.5",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-svelte": "3.23.0",
@@ -43,7 +44,7 @@
     "prettier-plugin-svelte": "4.1.1",
     "prettier-plugin-tailwindcss": "0.8.1",
     "svelte": "5.57.0",
-    "typescript-eslint": "8.70.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.70.0"
   }
 }

@@ -1,7 +1,7 @@
 # Tugas Implementasi — UMBUL NOGO
 
 > Status: draf tahap 7 — daftar pekerjaan berdasarkan empat dokumen sebelumnya.
-> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; berikutnya T-03 (shared schema dan kontrak).
+> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03 sudah diimplementasikan dan menunggu bukti unit test.
 > Acuan: [requirement.md](./requirement.md), [design.md](./design.md), [api-standar.md](./api-standar.md), dan [code-conventions.md](./code-conventions.md).
 > Pembaruan 11 September 2026: lihat [bukti T-01](./evidence/t01-bootstrap.md) dan [bukti T-02](./evidence/t02-code-checks.md). Pengiriman pekerjaan memakai branch `development`; tes dan pemicu CI manual menunggu konfirmasi pemilik proyek sesuai [AGENTS.md](../AGENTS.md). Cakupan pengaturan pada [settings.md](./settings.md) tetap masuk tugas terkait.
 
@@ -59,6 +59,7 @@ Urutan bagian mengelompokkan pekerjaan, bukan mewajibkan semuanya berjalan seria
 - **Hasil:** schema Zod dan tipe turunan untuk snapshot publik, sesi, profil/jadwal/kontak, SEO, Operasional privat, empat koleksi, media, envelope, versi, dan katalog error.
 - **Selesai bila:** bentuk request/response sesuai seluruh bagian `api-standar.md`; input strict, null berbeda dari kosong/0, nominal integer, jadwal lintas tengah malam dan Unicode divalidasi. Package kontrak tidak membawa runtime server atau secret ke browser.
 - **Bukti:** unit kontrak dengan nilai batas/masukan tidak sah dan typecheck terpisah. Pembatasan akses serta keberadaan media tetap milik service BE.
+- **Hasil aktual:** [implementasi dan bukti T-03](./evidence/t03-shared-contracts.md); schema serta unit test tersedia; format, lint, typecheck terpisah/workspace, dan check sumber lulus. Pengujian perilaku belum dijalankan, menunggu persetujuan pemilik.
 
 ### T-04 — PostgreSQL, schema, migrasi, dan fixture
 
