@@ -25,6 +25,7 @@ function fixture(routes: HttpRoute[] = [], ready = true) {
     ready: () => Promise.resolve(ready),
     log: (entry) => logs.push(entry),
     routes,
+    authorizePrivate: () => Promise.resolve(),
   });
   return { app, logs };
 }

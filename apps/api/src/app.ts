@@ -3,13 +3,14 @@ import { Elysia } from "elysia";
 import { bootstrapResponseSchema } from "@umbul-nogo/contracts/bootstrap";
 import type { BootstrapSite } from "@umbul-nogo/contracts/bootstrap";
 import { handleRequest, jsonResponse } from "./http/transport";
-import type { HttpRoute, RequestLog } from "./http/transport";
+import type { HttpRoute, RequestLog, RequestContext } from "./http/transport";
 
 export type AppDependencies = {
   readProfile: (signal: AbortSignal) => Promise<BootstrapSite>;
   ready: (signal: AbortSignal) => Promise<boolean>;
   log: (entry: RequestLog) => void;
   routes?: readonly HttpRoute[];
+  authorizePrivate?: (context: RequestContext) => Promise<void>;
   // Injectable only for deterministic tests; not configurable by HTTP clients.
   deadlineMs?: number;
 };
@@ -84,13 +85,28 @@ export function createApp(dependencies: AppDependencies) {
     app.all(
       path,
       ({ request, params }) =>
-        handleRequest(request, methods, params, dependencies.log, dependencies.deadlineMs),
+        handleRequest(
+          request,
+          methods,
+          params,
+          dependencies.log,
+          dependencies.deadlineMs,
+          dependencies.authorizePrivate,
+        ),
       { parse: "none" },
     );
   }
   app.all(
     "/*",
-    ({ request }) => handleRequest(request, [], {}, dependencies.log, dependencies.deadlineMs),
+    ({ request }) =>
+      handleRequest(
+        request,
+        [],
+        {},
+        dependencies.log,
+        dependencies.deadlineMs,
+        dependencies.authorizePrivate,
+      ),
     { parse: "none" },
   );
   return app;

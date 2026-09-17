@@ -1,3 +1,6 @@
+import { createPasswordVerifier } from "./auth/crypto";
+import { createAuthService } from "./auth/service";
+import { createAuthHttp } from "./auth/http";
 import { createApp } from "./app";
 import { createDatabase } from "./db/client";
 import { databaseServices } from "./db/health";
@@ -9,7 +12,18 @@ async function start(): Promise<void> {
   const config = readEnvironment(Bun.env);
   const connection = createDatabase(config.databaseUrl);
   try {
+    const sources = new WeakMap<Request, string>();
+    const auth = createAuthHttp({
+      service: createAuthService({
+        db: connection.db,
+        verifyPassword: await createPasswordVerifier(),
+      }),
+      siteOrigin: config.siteOrigin,
+      production: config.production,
+      sourceAddress: (request) => sources.get(request),
+    });
     const app = createApp({
+      ...auth,
       ...databaseServices(connection.db),
       log: (entry) => console.info(JSON.stringify(entry)),
     });
@@ -17,7 +31,15 @@ async function start(): Promise<void> {
       hostname: config.host,
       port: config.port,
       maxRequestBodySize: MULTIPART_BODY_BYTES,
-      fetch: (request) => app.handle(request),
+      fetch: async (request, server) => {
+        const address = server.requestIP(request)?.address;
+        if (address) sources.set(request, address);
+        try {
+          return await app.handle(request);
+        } finally {
+          sources.delete(request);
+        }
+      },
       error: () => new Response(null, { status: 500 }),
     });
     const stop = createShutdown({

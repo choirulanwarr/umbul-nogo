@@ -1,3 +1,4 @@
+import type { SessionDto } from "@umbul-nogo/contracts/auth";
 import { toFieldErrors } from "@umbul-nogo/contracts/errors";
 import type { ErrorCode } from "@umbul-nogo/contracts/errors";
 import type { ZodType } from "zod";
@@ -21,6 +22,7 @@ export type RequestContext = {
   params: Record<string, string>;
   query: Record<string, string>;
   body: unknown;
+  session?: SessionDto;
 };
 export type HttpRoute = {
   method: "GET" | "POST" | "PUT" | "DELETE";
@@ -51,6 +53,7 @@ export async function handleRequest(
   params: Record<string, string>,
   log: (entry: RequestLog) => void,
   deadlineOverride?: number,
+  authorizePrivate?: (context: RequestContext) => Promise<void>,
 ): Promise<Response> {
   const requestId = crypto.randomUUID();
   const started = performance.now();
@@ -83,6 +86,19 @@ export async function handleRequest(
   try {
     const work = async () => {
       if (request.signal.aborted) throw failure("SERVICE_UNAVAILABLE");
+      const context: RequestContext = {
+        request,
+        requestId,
+        signal: controller.signal,
+        params,
+        query: {},
+        body: undefined,
+      };
+      if (isPrivate) {
+        if (!authorizePrivate) throw failure("AUTH_REQUIRED");
+        await authorizePrivate(context);
+        controller.signal.throwIfAborted();
+      }
       if (!routes.length) throw failure("NOT_FOUND");
       if (!route) {
         const allowed = routes.flatMap((entry) =>
@@ -93,15 +109,7 @@ export async function handleRequest(
           { Allow: [...new Set(allowed)].join(", ") },
         );
       }
-      const context: RequestContext = {
-        request,
-        requestId,
-        signal: controller.signal,
-        params,
-        query: {},
-        body: undefined,
-      };
-      // Authentication/Origin hooks run before parsing; T-06 supplies real checks.
+      // Per-feature authorization runs after the mandatory private namespace guard.
       if (route.authorize) await route.authorize(context);
       controller.signal.throwIfAborted();
       for (const [key, value] of url.searchParams) {

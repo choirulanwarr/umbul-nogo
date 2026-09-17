@@ -1,3 +1,4 @@
+import { registerAuthDatabaseTests } from "./auth-database-cases";
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
 import { SQL } from "bun";
 import { eq, sql } from "drizzle-orm";
@@ -413,3 +414,5 @@ describe("T-04 PostgreSQL nyata", () => {
     });
   });
 });
+
+registerAuthDatabaseTests(connections);

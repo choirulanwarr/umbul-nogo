@@ -34,7 +34,9 @@
     "db:generate": "bun run --cwd apps/api db:generate",
     "db:migrate": "bun run --cwd apps/api db:migrate",
     "db:fixture": "bun run --cwd apps/api db:fixture",
-    "test:http": "bun run --cwd apps/api test:http"
+    "test:http": "bun run --cwd apps/api test:http",
+    "auth:cleanup": "bun run --cwd apps/api auth:cleanup",
+    "test:auth": "bun run --cwd apps/api test:auth"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",
