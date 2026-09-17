@@ -8,12 +8,14 @@ Gunakan Bun `1.4.0`, sesuai `.bun-version`. Dari root proyek:
 
 ```sh
 bun install --frozen-lockfile
+# Isi .env dari .env.example: SITE_ORIGIN dan DATABASE_URL runtime wajib.
+# Siapkan database/migrasi sesuai docs/database.md sebelum menjalankan aplikasi.
 bun run dev
 ```
 
-Web tersedia di `http://127.0.0.1:5173`, API bootstrap di `http://127.0.0.1:3001/internal/bootstrap`. Kedua proses dijalankan bersama; `Ctrl+C` menghentikannya. Nilai default cukup untuk T-01. Jika perlu mengganti port/koneksi lokal, salin `.env.example` menjadi `.env` dan jalankan ulang dari root.
+Web tersedia di `http://127.0.0.1:5173`, API bootstrap di `http://127.0.0.1:3001/internal/bootstrap`. Kedua proses dijalankan bersama; `Ctrl+C` menghentikannya. Sejak T-05, `.env` wajib berisi `SITE_ORIGIN` dan `DATABASE_URL` role runtime. Siapkan PostgreSQL dan migrasi melalui [panduan database](./docs/database.md); gunakan file operator terpisah untuk credential migrasi.
 
-Fondasi T-01 menampilkan halaman awal dengan identitas terkonfirmasi dan pesan informasi belum tersedia. Data masih berasal dari endpoint bootstrap sementara. Database, admin, snapshot `/api/v1/public/site`, dan pengaturan akan dibangun pada tugas berikutnya. Halaman awal memakai `noindex` sampai implementasi publik siap ditinjau.
+Fondasi T-01 menampilkan halaman awal dengan identitas terkonfirmasi dan pesan informasi belum tersedia. Endpoint bootstrap sementara kini membaca nama/wilayah dari database; schema dan migrasi tersedia sejak T-04. Admin, snapshot `/api/v1/public/site`, dan pengaturan mengikuti tugas berikutnya. Halaman awal memakai `noindex` sampai implementasi publik siap ditinjau.
 
 ## Build dan pemeriksaan
 
@@ -31,7 +33,7 @@ bun run test:e2e
 
 `format:check` memeriksa source/config; `bun run format` memperbaiki formatnya. Dokumen perencanaan dan README dikecualikan agar tidak diubah massal. `check:source` menolak JavaScript authored, ekstensi sumber di luar `.ts`/`.svelte`, dan script Svelte tanpa `lang="ts"`. Lint memeriksa TypeScript/Svelte serta batas aplikasi, kontrak, dan server/browser.
 
-`test:unit` menjalankan tes aturan tooling; `bunfig.toml` membatasi discovery Bun ke unit agar suite Playwright tidak ikut termuat. `test:integration` saat ini menjalankan decode Sharp dan `verify:runtime`: output produksi web/API di port 4183/4184, SSR, kegagalan API menjadi 503, dan shutdown. Integrasi database/storage akan ditambahkan saat implementasinya tersedia.
+`test:unit` menjalankan tes aturan tooling dan kontrak; `bunfig.toml` membatasi discovery Bun ke unit agar suite Playwright tidak ikut termuat. `test:integration` saat ini menjalankan decode Sharp dan `verify:runtime`: output produksi web/API di port 4183/4184, SSR, kegagalan API menjadi 503, dan shutdown. `test:http` menguji boundary HTTP dengan dependency fixture; `test:db` menguji PostgreSQL nyata secara terpisah. Sejak T-05, `test:integration` dan E2E memerlukan `TEST_DATABASE_URL` runtime pada database test yang sudah dimigrasi; tidak ada fallback DB palsu. Lihat [fondasi HTTP](./docs/http-foundation.md).
 
 `test:e2e` (alias lama `test:smoke`) menjalankan output produksi di port 4173/4174 dan menguji Chromium desktop/mobile, HTML tanpa JavaScript, CSS, aset, serta hydration. Runner menghentikan proses yang dijalankannya; port uji harus kosong. Jalankan `build` terlebih dahulu dan pasang browser Playwright sebelum tes pertama. Di Linux, gunakan `bun run --bun playwright install --with-deps chromium` untuk memasang dependency sistem browser juga.
 
@@ -49,7 +51,7 @@ bun run start:api
 HOST=127.0.0.1 PORT=3000 ORIGIN=http://127.0.0.1:3000 bun run start:web
 ```
 
-Pemeriksaan Bun/Linux dapat diulang melalui Docker yang sudah berjalan:
+Dockerfile bootstrap berikut menyimpan alur pembuktian T-01/T-02. Sejak T-05, tahap integrasi memerlukan database test eksternal; wiring layanan database untuk Docker/CI belum tersedia. Perintah ini menjalankan tes dan memerlukan persetujuan:
 
 ```sh
 docker build -f infra/Dockerfile.bootstrap -t umbul-nogo-checks:local .

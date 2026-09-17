@@ -1,7 +1,7 @@
 # Tugas Implementasi — UMBUL NOGO
 
 > Status: draf tahap 7 — daftar pekerjaan berdasarkan empat dokumen sebelumnya.
-> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03 dan T-04 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
+> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03–T-05 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
 > Acuan: [requirement.md](./requirement.md), [design.md](./design.md), [api-standar.md](./api-standar.md), dan [code-conventions.md](./code-conventions.md).
 > Pembaruan 11 September 2026: lihat [bukti T-01](./evidence/t01-bootstrap.md) dan [bukti T-02](./evidence/t02-code-checks.md). Pengiriman pekerjaan memakai branch `development`; tes dan pemicu CI manual menunggu konfirmasi pemilik proyek sesuai [AGENTS.md](../AGENTS.md). Cakupan pengaturan pada [settings.md](./settings.md) tetap masuk tugas terkait.
 
@@ -78,6 +78,7 @@ Urutan bagian mengelompokkan pekerjaan, bukan mewajibkan semuanya berjalan seria
 - **Hasil:** pemisahan `app.ts`/`server.ts`, validasi environment, routing `/api/v1`, pemetaan error, request ID, log aman, batas body, deadline, dan health internal.
 - **Selesai bila:** status/envelope sesuai kontrak; JSON/query tidak sah ditolak; limit berlaku termasuk tanpa Content-Length; error tidak menjadi sukses/daftar kosong. Startup dengan konfigurasi wajib hilang gagal tanpa secret; readiness memeriksa DB/schema, sementara gangguan storage tidak mematikan kemampuan baca konten.
 - **Bukti:** test HTTP terhadap input normal/tidak sah/batas ukuran, log yang telah diperiksa, health, dan shutdown. Autentikasi ditambahkan pada T-06; paparan jaringan produksi diperiksa pada T-24.
+- **Hasil aktual:** factory aplikasi, transport HTTP, environment, readiness DB/schema, logging dan lifecycle tersedia; lihat [fondasi HTTP](./http-foundation.md) serta [bukti T-05](./evidence/t05-http-foundation.md). Tes belum dijalankan sesuai instruksi pemilik; T-03/T-04 masih menunggu bukti perilaku.
 
 ## 4. Akses admin dan penyimpanan tarif
 

@@ -3,6 +3,7 @@ import { SQL } from "bun";
 import { eq, sql } from "drizzle-orm";
 import { createDatabase } from "../src/db/client";
 import type { Database } from "../src/db/client";
+import { databaseServices } from "../src/db/health";
 import { migrateDatabase } from "../src/db/migrate";
 import { assertLocalDatabase, localDatabaseUrl } from "../src/db/local-target";
 import { insertDevelopmentFixture } from "../src/db/fixture";
@@ -142,6 +143,26 @@ describe("T-04 PostgreSQL nyata", () => {
       adminUsers,
     ])
       expect(await db.select().from(table)).toEqual([]);
+  });
+  test("readiness runtime membaca schema dan bootstrap tanpa izin journal", async () => {
+    const { db } = connections().runtime;
+    const services = databaseServices(db);
+    const signal = new AbortController().signal;
+    expect(await services.ready(signal)).toBe(true);
+    expect(await services.readProfile(signal)).toEqual({
+      name: "UMBUL NOGO",
+      region: "Wonogiri, Jawa Tengah",
+    });
+  });
+  test("readiness menolak schema yang kehilangan kolom wajib", async () => {
+    const { db } = connections().migration;
+    await sqlFailure(
+      rollback(db, async (tx) => {
+        await tx.execute(sql`ALTER TABLE site_profile DROP COLUMN region`);
+        await databaseServices(tx).ready(new AbortController().signal);
+      }),
+      ["42703"],
+    );
   });
   test("rerun migrasi tidak menimpa profil dan Operasional yang diedit", async () => {
     const { db } = connections().migration;

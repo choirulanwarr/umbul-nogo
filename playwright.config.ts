@@ -21,7 +21,12 @@ export default defineConfig({
     {
       command: "bun run start:api",
       url: "http://127.0.0.1:4174/internal/bootstrap",
-      env: { API_HOST: "127.0.0.1", API_PORT: "4174" },
+      env: {
+        API_HOST: "127.0.0.1",
+        API_PORT: "4174",
+        SITE_ORIGIN: "https://example.test",
+        DATABASE_URL: process.env.TEST_DATABASE_URL ?? "",
+      },
       reuseExistingServer: false,
     },
     {
