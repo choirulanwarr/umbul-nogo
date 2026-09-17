@@ -12,13 +12,17 @@
     "db:generate": "bun run --bun drizzle-kit generate",
     "db:migrate": "bun scripts/migrate.ts",
     "db:fixture": "bun scripts/fixture.ts",
-    "test:db": "bun --config ./bunfig.toml test ./tests/database.integration.test.ts"
+    "test:db": "bun --config ./bunfig.toml test ./tests/database.integration.test.ts",
+    "test:http": "bun --config ./bunfig.toml test ./tests/http.test.ts",
+    "auth:cleanup": "bun scripts/cleanup-auth.ts",
+    "test:auth": "bun --config ./bunfig.toml test ./tests/auth.test.ts"
   },
   "dependencies": {
     "@umbul-nogo/contracts": "workspace:*",
     "drizzle-orm": "0.45.2",
     "elysia": "1.4.30",
-    "sharp": "0.35.4"
+    "sharp": "0.35.4",
+    "zod": "4.5.4"
   },
   "devDependencies": {
     "drizzle-kit": "0.31.10"

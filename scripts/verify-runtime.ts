@@ -32,9 +32,18 @@ async function stop(child: Subprocess): Promise<number> {
   }
 }
 
+if (!Bun.env.TEST_DATABASE_URL)
+  throw new Error("TEST_DATABASE_URL wajib menunjuk database test yang sudah dimigrasi.");
 const api = Bun.spawn([process.execPath, "dist/server.js"], {
   cwd: new URL("../apps/api/", import.meta.url).pathname,
-  env: { ...Bun.env, NODE_ENV: "production", API_HOST: "127.0.0.1", API_PORT: String(apiPort) },
+  env: {
+    ...Bun.env,
+    NODE_ENV: "production",
+    SITE_ORIGIN: "https://example.test",
+    DATABASE_URL: Bun.env.TEST_DATABASE_URL,
+    API_HOST: "127.0.0.1",
+    API_PORT: String(apiPort),
+  },
   stdout: "inherit",
   stderr: "inherit",
 });
