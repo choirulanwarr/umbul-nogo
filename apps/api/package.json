@@ -15,7 +15,8 @@
     "test:db": "bun --config ./bunfig.toml test ./tests/database.integration.test.ts",
     "test:http": "bun --config ./bunfig.toml test ./tests/http.test.ts",
     "auth:cleanup": "bun scripts/cleanup-auth.ts",
-    "test:auth": "bun --config ./bunfig.toml test ./tests/auth.test.ts"
+    "test:auth": "bun --config ./bunfig.toml test ./tests/auth.test.ts",
+    "admin:account": "bun scripts/admin-account.ts"
   },
   "dependencies": {
     "@umbul-nogo/contracts": "workspace:*",

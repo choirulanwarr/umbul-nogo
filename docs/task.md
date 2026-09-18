@@ -1,7 +1,7 @@
 # Tugas Implementasi — UMBUL NOGO
 
 > Status: draf tahap 7 — daftar pekerjaan berdasarkan empat dokumen sebelumnya.
-> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03–T-06 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
+> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03–T-07 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
 > Acuan: [requirement.md](./requirement.md), [design.md](./design.md), [api-standar.md](./api-standar.md), dan [code-conventions.md](./code-conventions.md).
 > Pembaruan 11 September 2026: lihat [bukti T-01](./evidence/t01-bootstrap.md) dan [bukti T-02](./evidence/t02-code-checks.md). Pengiriman pekerjaan memakai branch `development`; tes dan pemicu CI manual menunggu konfirmasi pemilik proyek sesuai [AGENTS.md](../AGENTS.md). Cakupan pengaturan pada [settings.md](./settings.md) tetap masuk tugas terkait.
 
@@ -98,6 +98,7 @@ Urutan bagian mengelompokkan pekerjaan, bukan mewajibkan semuanya berjalan seria
 - **Hasil:** skrip TypeScript membuat akun awal, mereset password, menonaktifkan akun, serta panduan penyerahan/pemulihan akses.
 - **Selesai bila:** password dimasukkan melalui prompt tersembunyi, tidak melalui argumen/log/seed; reset dan penonaktifan mencabut seluruh sesi secara atomik. Akun uji dapat dipakai untuk pengujian admin. Penerima akun nyata ditetapkan sebelum peluncuran.
 - **Bukti:** akun uji berhasil login, sesi lama gagal setelah reset/disable, serta catatan audit tanpa credential. Tidak menambah pendaftaran publik atau layanan email reset.
+- **Hasil aktual:** CLI create/reset/disable dengan prompt password tersembunyi, transaksi pencabutan sesi/audit, dan panduan pemulihan tersedia; lihat [panduan operator](./operator-accounts.md) dan [bukti T-07](./evidence/t07-operator-accounts.md). Tes belum dijalankan, menunggu konfirmasi pemilik; penerima akun nyata ditetapkan sebelum peluncuran.
 
 ### T-08 — Transaksi konten, versi, dan receipt
 

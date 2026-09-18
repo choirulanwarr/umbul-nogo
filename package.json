@@ -36,7 +36,8 @@
     "db:fixture": "bun run --cwd apps/api db:fixture",
     "test:http": "bun run --cwd apps/api test:http",
     "auth:cleanup": "bun run --cwd apps/api auth:cleanup",
-    "test:auth": "bun run --cwd apps/api test:auth"
+    "test:auth": "bun run --cwd apps/api test:auth",
+    "admin:account": "bun run --cwd apps/api admin:account"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",

@@ -1,6 +1,6 @@
 # Sesi admin — T-06
 
-Implementasi tersedia; tes belum dijalankan sesuai instruksi pemilik. Status bukti ada di [T-06](./evidence/t06-auth.md). Gunakan database yang sudah dimigrasi dengan role `umbul_runtime`, `SITE_ORIGIN` origin web yang tepat, dan `NODE_ENV=production` untuk cookie produksi. Provisioning/reset/disable akun adalah T-07; task ini tidak membuat akun atau password operasional.
+Implementasi tersedia; tes belum dijalankan sesuai instruksi pemilik. Status bukti ada di [T-06](./evidence/t06-auth.md). Gunakan database yang sudah dimigrasi dengan role `umbul_runtime`, `SITE_ORIGIN` origin web yang tepat, dan `NODE_ENV=production` untuk cookie produksi. Provisioning/reset/disable akun tersedia melalui [CLI operator T-07](./operator-accounts.md); implementasi tidak membuat akun atau password operasional.
 
 ## Kontrak HTTP
 
