@@ -18,7 +18,9 @@
     "test:auth": "bun --config ./bunfig.toml test ./tests/auth.test.ts",
     "admin:account": "bun scripts/admin-account.ts",
     "receipts:cleanup": "bun scripts/cleanup-receipts.ts",
-    "test:content": "bun --config ./bunfig.toml test ./tests/content.test.ts ./tests/content-http.test.ts"
+    "test:content": "bun --config ./bunfig.toml test ./tests/content.test.ts ./tests/content-http.test.ts",
+    "test:media": "bun --config ./bunfig.toml test ./tests/media.test.ts",
+    "test:media-storage": "bun --config ./bunfig.toml test ./tests/media-storage.integration.test.ts"
   },
   "dependencies": {
     "@umbul-nogo/contracts": "workspace:*",

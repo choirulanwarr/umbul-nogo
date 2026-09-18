@@ -1,3 +1,7 @@
+import { readMediaEnvironment } from "./media/config";
+import { createMediaStorage } from "./media/storage";
+import { createMediaService } from "./media/service";
+import { createMediaHttp } from "./media/http";
 import { createTicketRateHttp } from "./ticket-rates/http";
 import { createTicketRateService } from "./ticket-rates/service";
 import { createContentHttp } from "./content/http";
@@ -14,6 +18,7 @@ import { createShutdown } from "./lifecycle";
 
 async function start(): Promise<void> {
   const config = readEnvironment(Bun.env);
+  const mediaConfig = readMediaEnvironment(Bun.env);
   const connection = createDatabase(config.databaseUrl);
   try {
     const sources = new WeakMap<Request, string>();
@@ -30,6 +35,14 @@ async function start(): Promise<void> {
       ...auth,
       routes: [
         ...auth.routes,
+        ...createMediaHttp(
+          createMediaService({
+            db: connection.db,
+            baseUrl: mediaConfig.baseUrl,
+            storage: mediaConfig.storage ? createMediaStorage(mediaConfig.storage) : undefined,
+          }),
+          config.production,
+        ),
         ...createTicketRateHttp({
           service: createTicketRateService({ db: connection.db }),
           production: config.production,

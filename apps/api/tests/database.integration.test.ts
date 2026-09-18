@@ -1,3 +1,4 @@
+import { registerMediaDatabaseTests } from "./media-database-cases";
 import { registerTicketRateDatabaseTests } from "./ticket-rates-database-cases";
 import { registerContentDatabaseTests } from "./content-database-cases";
 import { registerOperatorDatabaseTests } from "./operator-database-cases";
@@ -425,3 +426,5 @@ registerOperatorDatabaseTests(connections);
 registerContentDatabaseTests(connections);
 
 registerTicketRateDatabaseTests(connections);
+
+registerMediaDatabaseTests(connections);

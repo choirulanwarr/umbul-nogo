@@ -21,6 +21,14 @@ export function failure(
     RECEIPT_NOT_FOUND:
       "Receipt belum tersedia atau retensinya berakhir; hasil simpan belum dapat dipastikan.",
     IDEMPOTENCY_KEY_REUSED: "Kunci operasi sudah dipakai untuk data yang berbeda.",
+    UPLOAD_NOT_FOUND: "Reservasi unggahan belum ditemukan; hasil unggahan belum dapat dipastikan.",
+    UPLOAD_KEY_REUSED: "Kunci unggahan sudah dipakai untuk berkas yang berbeda.",
+    MEDIA_NOT_REUSABLE: "Media yang dihapus tidak dapat diunggah ulang dengan kunci lama.",
+    MEDIA_BUSY: "Percobaan media sudah berubah atau masih diproses. Periksa status unggahan.",
+    IMAGE_INVALID: "Gunakan gambar JPEG, PNG, atau WebP statis yang valid, maksimal 25 megapiksel.",
+    FILE_TOO_LARGE: "Ukuran gambar maksimal 5 MiB.",
+    STORAGE_UNAVAILABLE: "Penyimpanan gambar belum tersedia. Coba kembali nanti.",
+    INVALID_CURSOR: "Cursor pustaka tidak sah atau filter sudah berubah.",
     INVALID_ORDER:
       "Urutan harus memuat seluruh ID item tepat satu kali, termasuk item tersembunyi.",
     METHOD_NOT_ALLOWED: "Metode tidak diizinkan.",

@@ -1,7 +1,7 @@
 # Tugas Implementasi — UMBUL NOGO
 
 > Status: draf tahap 7 — daftar pekerjaan berdasarkan empat dokumen sebelumnya.
-> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03–T-09 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
+> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03–T-10 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
 > Acuan: [requirement.md](./requirement.md), [design.md](./design.md), [api-standar.md](./api-standar.md), dan [code-conventions.md](./code-conventions.md).
 > Pembaruan 11 September 2026: lihat [bukti T-01](./evidence/t01-bootstrap.md) dan [bukti T-02](./evidence/t02-code-checks.md). Pengiriman pekerjaan memakai branch `development`; tes dan pemicu CI manual menunggu konfirmasi pemilik proyek sesuai [AGENTS.md](../AGENTS.md). Cakupan pengaturan pada [settings.md](./settings.md) tetap masuk tugas terkait.
 
@@ -127,6 +127,7 @@ Urutan bagian mengelompokkan pekerjaan, bukan mewajibkan semuanya berjalan seria
 - **Hasil:** storage adapter S3, multipart upload, reservasi upload key, normalisasi Sharp, manifest varian, status lookup, list/detail media, dan pagination cursor.
 - **Selesai bila:** hanya JPEG/PNG/WebP statis maksimal 5 MiB dan 25 megapiksel diproses; body maksimal 6 MiB; satu pemrosesan gambar aktif per instance. Varian WebP tidak upscale, metadata dibersihkan, object key dibuat server, dan `ready` baru committed setelah verifikasi semua objek. URL publik stabil; key/credential internal tidak masuk DTO.
 - **Bukti:** unggahan nyata ke storage uji terisolasi, file rusak/animasi/MIME palsu/terlalu besar, slot penuh, duplicate key dengan byte sama/berbeda, serta cursor tidak sah. Kompatibilitas penyedia target dibuktikan pada T-24.
+- **Hasil aktual:** reservasi upload key/lease, slot tunggal, normalisasi Sharp, manifest/verifikasi S3, lookup/list/detail/referensi dan cursor tersedia; lihat [panduan media](./media.md) dan [bukti T-10](./evidence/t10-media.md). Suite unit/DB/storage nyata sudah ditulis, belum dijalankan sesuai instruksi pemilik; bucket/provider belum diprovisikan.
 
 ### T-11 — Rekonsiliasi dan penghapusan media
 

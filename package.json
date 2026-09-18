@@ -39,7 +39,9 @@
     "test:auth": "bun run --cwd apps/api test:auth",
     "admin:account": "bun run --cwd apps/api admin:account",
     "receipts:cleanup": "bun run --cwd apps/api receipts:cleanup",
-    "test:content": "bun run --cwd apps/api test:content"
+    "test:content": "bun run --cwd apps/api test:content",
+    "test:media": "bun run --cwd apps/api test:media",
+    "test:media-storage": "bun run --cwd apps/api test:media-storage"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",
