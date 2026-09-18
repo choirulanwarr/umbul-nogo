@@ -1,3 +1,4 @@
+import { registerContentDatabaseTests } from "./content-database-cases";
 import { registerOperatorDatabaseTests } from "./operator-database-cases";
 import { registerAuthDatabaseTests } from "./auth-database-cases";
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
@@ -419,3 +420,5 @@ describe("T-04 PostgreSQL nyata", () => {
 registerAuthDatabaseTests(connections);
 
 registerOperatorDatabaseTests(connections);
+
+registerContentDatabaseTests(connections);

@@ -1,3 +1,5 @@
+import { createContentHttp } from "./content/http";
+import { createContentService } from "./content/service";
 import { createPasswordVerifier } from "./auth/crypto";
 import { createAuthService } from "./auth/service";
 import { createAuthHttp } from "./auth/http";
@@ -24,6 +26,13 @@ async function start(): Promise<void> {
     });
     const app = createApp({
       ...auth,
+      routes: [
+        ...auth.routes,
+        ...createContentHttp({
+          service: createContentService({ db: connection.db }),
+          production: config.production,
+        }),
+      ],
       ...databaseServices(connection.db),
       log: (entry) => console.info(JSON.stringify(entry)),
     });

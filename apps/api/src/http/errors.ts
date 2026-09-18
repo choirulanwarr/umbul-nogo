@@ -18,6 +18,9 @@ export function failure(
   const messages: Partial<Record<ErrorCode, string>> = {
     INVALID_REQUEST: "Request tidak sah.",
     NOT_FOUND: "Resource tidak ditemukan.",
+    RECEIPT_NOT_FOUND:
+      "Receipt belum tersedia atau retensinya berakhir; hasil simpan belum dapat dipastikan.",
+    IDEMPOTENCY_KEY_REUSED: "Kunci operasi sudah dipakai untuk data yang berbeda.",
     METHOD_NOT_ALLOWED: "Metode tidak diizinkan.",
     PAYLOAD_TOO_LARGE: "Ukuran request terlalu besar.",
     UNSUPPORTED_MEDIA_TYPE: "Tipe konten tidak didukung.",

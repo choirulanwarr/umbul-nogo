@@ -1,7 +1,7 @@
 # Tugas Implementasi — UMBUL NOGO
 
 > Status: draf tahap 7 — daftar pekerjaan berdasarkan empat dokumen sebelumnya.
-> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03–T-07 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
+> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03–T-08 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
 > Acuan: [requirement.md](./requirement.md), [design.md](./design.md), [api-standar.md](./api-standar.md), dan [code-conventions.md](./code-conventions.md).
 > Pembaruan 11 September 2026: lihat [bukti T-01](./evidence/t01-bootstrap.md) dan [bukti T-02](./evidence/t02-code-checks.md). Pengiriman pekerjaan memakai branch `development`; tes dan pemicu CI manual menunggu konfirmasi pemilik proyek sesuai [AGENTS.md](../AGENTS.md). Cakupan pengaturan pada [settings.md](./settings.md) tetap masuk tugas terkait.
 
@@ -107,6 +107,7 @@ Urutan bagian mengelompokkan pekerjaan, bukan mewajibkan semuanya berjalan seria
 - **Hasil:** service transaksi konten global, kanonisasi hash niat, constraint receipt, lookup/replay, pembersihan receipt kedaluwarsa, serta penanda pembaruan dan audit.
 - **Selesai bila:** setiap operasi berhasil menaikkan versi sekali; perubahan data/audit/receipt committed bersama. Receipt identik diperiksa sebelum konflik versi/keberadaan entitas; kunci sama dengan payload berbeda ditolak. Retensi 24 jam dan lookup yang tidak membuktikan rollback mengikuti API.
 - **Bukti:** integrasi service dengan perubahan fixture nyata, dua niat dari versi sama, duplikasi serentak, dan kegagalan transaksi. Konfirmasi melalui endpoint tarif pada T-09 dan pemutusan respons setelah commit pada T-22.
+- **Hasil aktual:** service transaksi global, hash kanonis, replay/lookup receipt privat, penanda berdasarkan proyeksi, audit atomik, dan job cleanup tersedia; lihat [panduan transaksi](./content-transactions.md) dan [bukti T-08](./evidence/t08-content-transactions.md). Tes belum dijalankan; integrasi endpoint tarif dilanjutkan pada T-09.
 
 ### T-09 — API tarif tiket
 
