@@ -1,6 +1,6 @@
 # Transaksi konten dan receipt — T-08
 
-Implementasi tersedia; tes perilaku belum dijalankan. T-08 menyiapkan service bersama dan endpoint lookup. API mutasi tiket diintegrasikan pada T-09, singleton/koleksi lain pada T-12/T-13. Tidak ada tarif atau konten operasional nyata diubah saat implementasi.
+Implementasi tersedia; tes perilaku belum dijalankan. T-08 menyiapkan service bersama dan endpoint lookup. API mutasi tiket sudah terintegrasi pada [T-09](./ticket-rates.md); singleton/koleksi lain menyusul pada T-12/T-13. Tidak ada tarif atau konten operasional nyata diubah saat implementasi.
 
 ## Urutan transaksi
 
@@ -45,4 +45,4 @@ Masa berlaku 24 jam dihitung dari waktu finalisasi receipt menjelang commit, set
 
 Lihat [bukti T-08](./evidence/t08-content-transactions.md). Suite `bun run test:content` memuat unit kanonisasi dan HTTP lookup dengan dependency fixture. `bun run test:db` memuat skenario transaksi PostgreSQL nyata bersama T-04/T-06/T-07. Keduanya memerlukan persetujuan pemilik sebelum dijalankan. Pengaturan database test mengikuti [panduan database](./database.md).
 
-Integrasi mutasi lewat endpoint tiket berada pada T-09. Pemutusan respons setelah commit dan pemulihan UI berada pada T-22. T-08 belum dianggap selesai terbukti sebelum tes dan dependensinya memiliki bukti perilaku.
+Integrasi mutasi lewat endpoint tiket tersedia pada T-09; tesnya masih menunggu persetujuan. Pemutusan respons setelah commit dan pemulihan UI berada pada T-22. T-08 belum dianggap selesai terbukti sebelum tes dan dependensinya memiliki bukti perilaku.

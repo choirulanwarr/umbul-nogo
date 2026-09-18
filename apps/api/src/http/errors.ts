@@ -21,6 +21,8 @@ export function failure(
     RECEIPT_NOT_FOUND:
       "Receipt belum tersedia atau retensinya berakhir; hasil simpan belum dapat dipastikan.",
     IDEMPOTENCY_KEY_REUSED: "Kunci operasi sudah dipakai untuk data yang berbeda.",
+    INVALID_ORDER:
+      "Urutan harus memuat seluruh ID item tepat satu kali, termasuk item tersembunyi.",
     METHOD_NOT_ALLOWED: "Metode tidak diizinkan.",
     PAYLOAD_TOO_LARGE: "Ukuran request terlalu besar.",
     UNSUPPORTED_MEDIA_TYPE: "Tipe konten tidak didukung.",

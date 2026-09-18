@@ -1,3 +1,5 @@
+import { createTicketRateHttp } from "./ticket-rates/http";
+import { createTicketRateService } from "./ticket-rates/service";
 import { createContentHttp } from "./content/http";
 import { createContentService } from "./content/service";
 import { createPasswordVerifier } from "./auth/crypto";
@@ -28,6 +30,10 @@ async function start(): Promise<void> {
       ...auth,
       routes: [
         ...auth.routes,
+        ...createTicketRateHttp({
+          service: createTicketRateService({ db: connection.db }),
+          production: config.production,
+        }),
         ...createContentHttp({
           service: createContentService({ db: connection.db }),
           production: config.production,

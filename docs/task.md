@@ -1,7 +1,7 @@
 # Tugas Implementasi — UMBUL NOGO
 
 > Status: draf tahap 7 — daftar pekerjaan berdasarkan empat dokumen sebelumnya.
-> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03–T-08 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
+> Progres implementasi: **2 dari 29 tugas selesai**. T-01 dan T-02 memiliki hasil uji lokal/Linux; T-03–T-09 sudah diimplementasikan; bukti perilaku menunggu persetujuan tes.
 > Acuan: [requirement.md](./requirement.md), [design.md](./design.md), [api-standar.md](./api-standar.md), dan [code-conventions.md](./code-conventions.md).
 > Pembaruan 11 September 2026: lihat [bukti T-01](./evidence/t01-bootstrap.md) dan [bukti T-02](./evidence/t02-code-checks.md). Pengiriman pekerjaan memakai branch `development`; tes dan pemicu CI manual menunggu konfirmasi pemilik proyek sesuai [AGENTS.md](../AGENTS.md). Cakupan pengaturan pada [settings.md](./settings.md) tetap masuk tugas terkait.
 
@@ -116,6 +116,7 @@ Urutan bagian mengelompokkan pekerjaan, bukan mewajibkan semuanya berjalan seria
 - **Hasil:** list/detail, tambah, ganti, hapus, dan reorder `/admin/ticket-rates`, termasuk status tampil serta ketentuan.
 - **Selesai bila:** tarif menyimpan harga dan ketentuan atomik; harga 0 diterima eksplisit, negatif/pecahan/kosong/string ditolak; item baru default tersembunyi namun boleh tampil jika lengkap. DELETE memakai versi query tanpa body; reorder memerlukan seluruh ID termasuk tersembunyi. Waktu tiket berubah hanya untuk perubahan tarif publik.
 - **Bukti:** HTTP dan database setelah simpan/reload, invalid input, hide/show, reorder tidak lengkap, konflik, dan replay create/delete tanpa duplikasi.
+- **Hasil aktual:** list/detail/create/update/delete/order tarif dengan snapshot baca, transaksi receipt T-08, pemadatan urutan, serta penanda publik tersedia; lihat [panduan API tiket](./ticket-rates.md) dan [bukti T-09](./evidence/t09-ticket-rates.md). Skenario integrasi HTTP/PostgreSQL sudah ditulis, belum dijalankan sesuai instruksi pemilik.
 
 ## 5. Media dan seluruh konten destinasi
 
